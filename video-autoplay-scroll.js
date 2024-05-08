@@ -1,16 +1,26 @@
 <script>
-<!-- START -- Video Autoplay by dianaoviedo.work -->
-    
 function handleAutoplay() {
   var video = document.querySelector('.sqs-native-video video');
   var rect = video.getBoundingClientRect();
   var windowHeight = window.innerHeight || document.documentElement.clientHeight;
 
   if (rect.top >= 0 && rect.bottom <= windowHeight) {
-    video.currentTime = 0;
-    video.play();
+    if (!video.volume || video.volume < 1) {
+      if (!video.volume) {
+        video.volume = 0.03; // Start with a low volume (e.g., 10%)
+      } else {
+        video.volume += 0.03; // Increment the volume by 0.1 (adjust as needed)
+      }
+      setTimeout(function() {
+        handleAutoplay(); // Continue checking and increasing volume
+      }, 1000); // Adjust the delay between volume increases (e.g., 500ms)
+    } else {
+      
+      video.play();
+      window.removeEventListener('scroll', handleAutoplay);
+    }
   } else {
-    video.pause(); // Pause the video if it's out of the viewport
+    video.pause(); // Pause the video when completely out of viewport
   }
 }
 
@@ -31,7 +41,4 @@ var throttledAutoplay = throttle(handleAutoplay, 250); // Throttle to avoid too 
 window.addEventListener('scroll', throttledAutoplay);
 
 handleAutoplay(); // Check visibility on initial load
-
-<!-- END -- Video Autoplay by dianaoviedo.work -->
 </script>
-
