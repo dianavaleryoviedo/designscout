@@ -43,6 +43,20 @@ handleAutoplay();
 
 
 
+function loadExternalScripts() {
+  var gsapScript = document.createElement('script');
+  gsapScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js';
+  gsapScript.async = true;
+
+  var scrollTriggerScript = document.createElement('script');
+  scrollTriggerScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js';
+  scrollTriggerScript.async = true;
+
+  document.body.appendChild(gsapScript);
+  document.body.appendChild(scrollTriggerScript);
+
+
+loadExternalScripts();
 
 
   
