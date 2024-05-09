@@ -23,6 +23,41 @@ function handleAutoplay() {
   }
 }
 
+
+
+
+
+
+
+
+
+
+function handleAutoplay() {
+  var video = document.querySelector('.sqs-native-video video');
+  var rect = video.getBoundingClientRect();
+  var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+  if (rect.top >= 0 && rect.bottom <= windowHeight) {
+    if (!video.volume || video.volume < 1) {
+      if (!video.volume) {
+        video.volume = 0.01;
+      } else {
+        video.volume += 0.03;
+      }
+      setTimeout(function() {
+        handleAutoplay();
+      }, 1000);
+    } else {
+      
+      video.play();
+      window.removeEventListener('scroll', handleAutoplay);
+    }
+  } else {
+    video.pause();
+  }
+}
+
+
 function throttle(callback, limit) {
   var wait = false;
   return function () {
@@ -36,11 +71,11 @@ function throttle(callback, limit) {
   };
 }
 
+
 var throttledAutoplay = throttle(handleAutoplay, 250);
+
+
 window.addEventListener('scroll', throttledAutoplay);
-
-handleAutoplay();
-
 
 
 function loadExternalScripts() {
@@ -56,16 +91,17 @@ function loadExternalScripts() {
   document.body.appendChild(scrollTriggerScript);
 
 
-loadExternalScripts();
+  gsapScript.onload = function() {
+    console.log('GSAP script loaded.');
+    scrollTriggerScript.onload = function() {
+      console.log('ScrollTrigger script loaded.');
 
-
-  
-gsap.registerPlugin(ScrollTrigger);   
-  
-
+ 
+      gsap.registerPlugin(ScrollTrigger);
+    
 gsap.fromTo(".sqs-block-image [href='/left']", 
   {
-    x: 300 
+    x: 100
   },
   {
     x: -200,
@@ -84,11 +120,11 @@ ScrollTrigger.refresh();
 
 gsap.fromTo(".sqs-block-image [href='/right']", 
   {
-    x: -300
+    x: -100
   },
   {
-    x: 200, 
-    duration: 1, 
+    x: 200,
+    duration: 1,
     scrollTrigger: {
       trigger: 'section[data-section-id="66180f89c31c46244fb0d4e0"]',
       start: "top bottom",
@@ -101,8 +137,12 @@ gsap.fromTo(".sqs-block-image [href='/right']",
 ScrollTrigger.refresh();
 
 
-  gsap.to(".sqs-block-video", {
-   scale: 1.2,
+  gsap.fromTo(".sqs-block-video", {
+   scale: 0.5
+  },
+  {
+    scale: 1.2,
+    duration: 1,
     scrollTrigger:{
       trigger: 'section[data-section-id="6618184ec021bc5008d6f1ad"]',
       start: "top top",
@@ -112,3 +152,10 @@ ScrollTrigger.refresh();
     }
 });
 ScrollTrigger.refresh()  
+    };
+  };
+}
+
+
+loadExternalScripts();
+
