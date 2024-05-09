@@ -52,14 +52,14 @@ handleAutoplay();
   
 gsap.registerPlugin(ScrollTrigger);   
   
- /*  Left Moving Images */  
+
 gsap.fromTo(".sqs-block-image [href='/left']", 
   {
-    x: 300 // Starting position (original)
+    x: 300 
   },
   {
-    x: -200, // Ending position (x = -200)
-    duration: 1, // Animation duration (adjust as needed)
+    x: -200,
+    duration: 1,
     scrollTrigger: {
       trigger: 'section[data-section-id="66180f89c31c46244fb0d4e0"]',
       start: "top bottom",
@@ -71,14 +71,14 @@ gsap.fromTo(".sqs-block-image [href='/left']",
 );
 ScrollTrigger.refresh();
   
- /*  Right Moving Images */ 
+
 gsap.fromTo(".sqs-block-image [href='/right']", 
   {
-    x: -300 // Starting position (original)
+    x: -300
   },
   {
-    x: 200, // Ending position (x = -200)
-    duration: 1, // Animation duration (adjust as needed)
+    x: 200, 
+    duration: 1, 
     scrollTrigger: {
       trigger: 'section[data-section-id="66180f89c31c46244fb0d4e0"]',
       start: "top bottom",
@@ -90,7 +90,7 @@ gsap.fromTo(".sqs-block-image [href='/right']",
 );
 ScrollTrigger.refresh();
 
- /*  Video Scale */ 
+
   gsap.to(".sqs-block-video", {
    scale: 1.2,
     scrollTrigger:{
