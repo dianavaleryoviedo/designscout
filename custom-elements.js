@@ -1,4 +1,3 @@
-<!-- START Video Autoplay by dianaoviedo.work -->
 <script>
 function handleAutoplay() {
   var video = document.querySelector('.sqs-native-video video');
@@ -43,10 +42,10 @@ window.addEventListener('scroll', throttledAutoplay);
 
 handleAutoplay();
 </script>
-<!-- END Video Autoplay by dianaoviedo.work -->
 
 
-<!-- START -- ScrollTrigger by dianaoviedo.work -->
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
 <script>
@@ -104,4 +103,3 @@ ScrollTrigger.refresh();
 });
 ScrollTrigger.refresh()  
 </script>
-<!-- END -- ScrollTrigger by dianaoviedo.work -->
